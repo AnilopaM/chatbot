@@ -1,0 +1,34 @@
+version: "3.1"
+
+stories:
+  - story: история 1
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - action: utter_help
+    - intent: query_knowledge_base
+    - action: action_query_knowledge_base
+    - intent: configure_settings
+    - action: action_reset_objects_in_sample
+    - action: configure_settings_form
+    - active_loop: configure_settings_form
+    - slot_was_set:
+      - objects_in_sample
+    - active_loop: null  
+    - action: utter_configure_settings_ok
+
+  - story: история 2
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - action: utter_help
+    - intent: configure_settings
+    - action: action_reset_objects_in_sample
+    - action: configure_settings_form
+    - active_loop: configure_settings_form
+    - slot_was_set:
+      - objects_in_sample
+    - active_loop: null
+    - action: utter_configure_settings_ok
+    - intent: query_knowledge_base
+    - action: action_query_knowledge_base

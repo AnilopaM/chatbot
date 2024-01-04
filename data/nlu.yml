@@ -1,0 +1,560 @@
+version: "3.1"
+
+nlu:
+  # Намерение: приветствие
+  - intent: greet
+    examples: |
+      - привет
+      - здравствуте
+      - доброе утро
+      - добрый день
+      - добрый вечер
+      - доброй ночи
+
+  # Намерение: прощание
+  - intent: goodbye
+    examples: |
+      - пока
+      - до свидания
+      - увидимся
+      - увидимся позже
+      - выход
+      - завершить
+
+  # Намерение: помощь
+  - intent: help
+    examples: |
+      - помощь
+      - помоги
+      - помогите
+      - что ты умеешь
+      - расскажи о себе
+
+  # Намерение: запрос к базе знание 
+  - intent: query_knowledge_base
+    examples: |
+      - [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - доступные [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - перечислить [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - предложить [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - какие [мастер-классы]{"entity": "object_type", "value": "workshops"} можете предложить?
+      - какие [мастер-классы]{"entity": "object_type", "value": "workshops"} вы можете порекомендовать?
+      - назовите несколько [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - покажи мне несколько [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - [Театральные]{"entity": "direction", "value": "Театр"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - список [творческих]{"entity": "direction", "value": "Творчество"} [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - какие [мастер-классы]{"entity": "object_type", "value": "workshops"} по направлению [искусство]{"entity": "direction", "value": "Искусство"} можете предложить?
+      - предложить [мастер-классы]{"entity": "object_type", "value": "workshops"} по направлению [хобби]{"entity": "direction", "value": "Хобби"}
+      - покажи мне несколько [мастер-классов]{"entity": "object_type", "value": "workshops"} по направлению [наука]{"entity": "direction", "value": "Наука"}
+      - какие [музыкальные]{"entity": "direction", "value": "Музыка"} [мастер-классы]{"entity": "object_type", "value": "workshops"} можете предложить?
+      - доступные [научные]{"entity": "direction", "value": "Наука"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - список [научных]{"entity": "direction", "value": "Наука"} [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - покажи мне несколько [гастрономических]{"entity": "direction", "value": "Гастрономический"} [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - [Гастрономические]{"entity": "direction", "value": "Гастрономический"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - [Детские]{"entity": "category", "value": "Детский"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - список [взрослых]{"entity": "category", "value": "Взрослый"} [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - предложить [мастер-классы]{"entity": "object_type", "value": "workshops"} [для семьи]{"entity": "category", "value": "Семейный"}
+      - покажи мне несколько [мастер-классов]{"entity": "object_type", "value": "workshops"} [детских]{"entity": "category", "value": "Детский"}
+      - доступные [для взрослых]{"entity": "category", "value": "Взрослый"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - список [семейных]{"entity": "category", "value": "Семейный"} [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - [Индивидуальные]{"entity": "m_type", "value": "Индивидуальный"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - список [групповых]{"entity": "m_type", "value": "Групповой"} [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - предложить [мастер-классы]{"entity": "object_type", "value": "workshops"} [для одного]{"entity": "m_type", "value": "Индивидуальный"}
+      - доступные [для гпуппы]{"entity": "m_type", "value": "Групповой"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - сколько [мест]{"entity": "attribute", "value": "places"} в [первом]{"entity": "mention", "value": "1"}?
+      - какая [длительность]{"entity": "attribute", "value": "duration"} [второго]{"entity": "mention", "value": "2"}?
+      - сколько [стоит]{"entity": "attribute", "value": "price"} [третий]{"entity": "mention", "value": "3"}?
+      - ближайшая к [четвертому]{"entity": "mention", "value": "4"} [станция метро]{"entity": "attribute", "value": "metro"}
+      - [адрес]{"entity": "attribute", "value": "address"} [пятого]{"entity": "mention", "value": "5"}?
+      - [телефон]{"entity": "attribute", "value": "telephone"} [шестого]{"entity": "mention", "value": "6"}?
+      - [описание]{"entity": "attribute", "value": "description"} [седьмого]{"entity": "mention", "value": "7"}?
+      - [цена]{"entity": "attribute", "value": "price"} [восьмого]{"entity": "mention", "value": "8"}?
+      - [продолжительность]{"entity": "attribute", "value": "duration"} [девятого]{"entity": "mention", "value": "9"}?
+      - [содержание]{"entity": "attribute", "value": "description"} [десятого]{"entity": "mention", "value": "10"}?
+      - [метро]{"entity": "attribute", "value": "metro"} у [последнего]{"entity": "mention", "value": "LAST"}?
+      - как [называется]{"entity": "attribute", "value": "name"} [четвертый]{"entity": "mention", "value": "4"}?
+      - [направления]{"entity": "object_type", "value": "directions"}
+      - доступные [направления]{"entity": "object_type", "value": "directions"}
+      - по каким [направлениям]{"entity": "object_type", "value": "directions"} можно выбрирать
+      - перечислить [направления]{"entity": "object_type", "value": "directions"}
+      - перечислите [направления]{"entity": "object_type", "value": "directions"} для выбора
+      - предложите [направления]{"entity": "object_type", "value": "directions"} для выбора
+      - предложить [направления]{"entity": "object_type", "value": "directions"}
+      - [категории]{"entity": "object_type", "value": "categories"}
+      - доступные [категории]{"entity": "object_type", "value": "categories"}
+      - по каким [категориям]{"entity": "object_type", "value": "categories"} можно выбрирать
+      - перечислить [категории]{"entity": "object_type", "value": "categories"}
+      - перечислите [категории]{"entity": "object_type", "value": "categories"} для выбора
+      - предложите [категории]{"entity": "object_type", "value": "categories"} для выбора
+      - предложить [категории]{"entity": "object_type", "value": "categories"}
+      - [типы]{"entity": "object_type", "value": "types"}
+      - доступные [типы]{"entity": "object_type", "value": "types"}
+      - по каким [типам]{"entity": "object_type", "value": "types"} можно выбрирать
+      - перечислить [типы]{"entity": "object_type", "value": "types"}
+      - перечислите [типы]{"entity": "object_type", "value": "types"} для выбора
+      - предложите [типы]{"entity": "object_type", "value": "types"} для выбора
+      - предложить [типы]{"entity": "object_type", "value": "types"}
+      - [мастер-классы]{"entity": "object_type", "value": "workshops"} рядом с метро [Цветной бульвар]{"entity": "metro"}?
+      - [мастер-классы]{"entity": "object_type", "value": "workshops"} рядом с метро [Волоколамская]{"entity": "metro"}?
+      - [мастер-классы]{"entity": "object_type", "value": "workshops"} недалеко от метро [Площадь Революции]{"entity": "metro"}?
+      - [мастер-классы]{"entity": "object_type", "value": "workshops"} недалеко от метро [Электрозаводская]{"entity": "metro"}?
+      - ближайшие к метро [Баррикадная]{"entity": "metro"} [мастер-классы]{"entity": "object_type", "value": "workshops"}?
+      - ближайшие к метро [Зорге]{"entity": "metro"} [мастер-классы]{"entity": "object_type", "value": "workshops"}?
+      - какое [у него]{"entity": "mention"} [направление]{"entity": "attribute", "value": "direction"}?
+      - какое [у него]{"entity": "mention"} [название]{"entity": "attribute", "value": "name"}?
+      - какое [там]{"entity": "mention"} [наименование]{"entity": "attribute", "value": "name"}?
+      - какая [там]{"entity": "mention"} [категория]{"entity": "attribute", "value": "category"}?
+      - какой [у него]{"entity": "mention"} [тип]{"entity": "attribute", "value": "m_type"}?
+      - сколько [там]{"entity": "mention"} [мест]{"entity": "attribute", "value": "places"}?
+      - какая [у него]{"entity": "mention"} [продолжительность]{"entity": "attribute", "value": "duration"}?
+      - сколько [он]{"entity": "mention"} [стоит]{"entity": "attribute", "value": "price"}?
+      - ближайшая [к нему]{"entity": "mention"} [станция метро]{"entity": "attribute", "value": "metro"}?
+      - какой [там]{"entity": "mention"} [адрес]{"entity": "attribute", "value": "address"}?
+      - какой [у него]{"entity": "mention"} [телефон]{"entity": "attribute", "value": "telephone"}?
+      - какой [у него]{"entity": "mention"} [описание]{"entity": "attribute", "value": "description"}?
+      - [записаться]{"entity": "attribute", "value": "_add_"} на [пятый]{"entity": "mention", "value": "5"}
+      - [записаться]{"entity": "attribute", "value": "_add_"} на [1й]{"entity": "mention", "value": "1"}
+      - [выбрать]{"entity": "attribute", "value": "_add_"} [2-й]{"entity": "mention", "value": "2"}
+      - [добавить]{"entity": "attribute", "value": "_add_"} [седьмой]{"entity": "mention", "value": "7"}
+      - [включить]{"entity": "attribute", "value": "_add_"} [девятый]{"entity": "mention", "value": "9"}
+      - [выбрать]{"entity": "attribute", "value": "_add_"} [последний]{"entity": "mention", "value": "LAST"}
+      - [запишите]{"entity": "attribute", "value": "_add_"} на [него]{"entity": "mention"}
+      - [вывираю]{"entity": "attribute", "value": "_add_"} [этот]{"entity": "mention"}
+      - [выбранные]{"entity": "attribute", "value": "_list_"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - перечислить [выбранные]{"entity": "attribute", "value": "_list_"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - какие [мастер-классы]{"entity": "object_type", "value": "workshops"} я [выбрал]{"entity": "attribute", "value": "_list_"} 
+      - на какие [мастер-классы]{"entity": "object_type", "value": "workshops"} мы [записались]{"entity": "attribute", "value": "_list_"} 
+      - [мои]{"entity": "attribute", "value": "_list_"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - [наши]{"entity": "attribute", "value": "_list_"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - [удалить все]{"entity": "attribute", "value": "_clear_"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - [очистить]{"entity": "attribute", "value": "_clear_"} список [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - [очистить]{"entity": "attribute", "value": "_clear_"} список выбранных [мастер-классов]{"entity": "object_type", "value": "workshops"}
+      - [отписаться]{"entity": "attribute", "value": "_delete_"} от [третьего]{"entity": "mention", "value": "3"}
+      - [отписаться]{"entity": "attribute", "value": "_delete_"} от [2-го]{"entity": "mention", "value": "2"}
+      - [отменить]{"entity": "attribute", "value": "_delete_"} [5-й]{"entity": "mention", "value": "5"}
+      - [удалить]{"entity": "attribute", "value": "_delete_"} [седьмой]{"entity": "mention", "value": "7"}
+      - [исключить]{"entity": "attribute", "value": "_delete_"} [девятый]{"entity": "mention", "value": "9"}
+      - [удалить]{"entity": "attribute", "value": "_delete_"} [последний]{"entity": "mention", "value": "LAST"}
+      - [отписаться]{"entity": "attribute", "value": "_delete_"} от [последнего]{"entity": "mention", "value": "LAST"}
+      
+      
+  # Намерение: Настроить параметры    
+  - intent: configure_settings              
+    examples: |
+      - настроить параметры
+      - настроить параметры собеседника
+      - настроить параметры системы-собеседника
+      - настроить систему-собеседник
+      - настроить собеседника
+      - настроить собеседник
+      - настроить чат-бота
+      - настроить чат-бот
+      - настроить параметры помошника
+      - настроить помошник
+
+  # Намерение: Информация  
+  - intent: inform
+    examples: |
+      - 1
+      - 12
+
+  - synonym: "_delete_"
+    examples: |
+      - отписаться
+      - отменить
+      - удалить
+      - исключить
+
+  - synonym: "_list_"
+    examples: |
+      - выбранные
+      - выбрал
+      - выбрала
+      - выбрали
+      - записался
+      - записалась
+      - записались
+      - мои
+      - наши
+
+  - synonym: "_add_"
+    examples: |
+      - записаться
+      - запишите
+      - запиши
+      - выбрать
+      - выбираю
+      - добавить
+      - включить
+
+  - synonym: "там"
+    examples: |
+      - у него
+      - к нему
+      - него
+      - его
+      - он
+      - ним
+      - этот
+
+  - synonym: "name"
+    examples: |
+      - название
+      - наименование
+      - имя
+      - называется
+
+  - synonym: "description"
+    examples: |
+      - описание
+      - содержание
+
+  - synonym: "duration"
+    examples: |
+      - длительность
+      - продолжительность
+      - длиться
+      - продолжаться
+      - времени займет
+      - времени займёт
+
+  - synonym: "price"
+    examples: |
+      - цена
+      - стоит
+      - стоимость
+
+  - synonym: "Театр"
+    examples: |
+      - театр
+      - театральные
+      - театральный
+      - театральных
+      - Театральные
+      - Театральный
+      - Театральных
+
+  - synonym: "Музыка"
+    examples: |
+      - музыка
+      - музыкальные
+      - музыкальный
+      - музыкальных
+      - Музыкальные
+      - Музыкальный
+      - Музыкальных
+
+  - synonym: "Наука"
+    examples: |
+      - наука
+      - научные
+      - научный
+      - научных
+      - Научные
+      - Научный
+      - Научных
+
+  - synonym: "Гастрономический"
+    examples: |
+      - гастрономические
+      - гастрономический
+      - гастрономических
+      - гастрономическому
+      - Гастрономические
+      - Гастрономическому
+      - Гастрономических
+
+  - synonym: "Искусство"
+    examples: |
+      - искусство
+
+  - synonym: "Хобби"
+    examples: |
+      - хобби
+
+  - synonym: "Творчество"
+    examples: |
+      - творчество
+      - творческий
+      - творческие
+      - творческих
+      - Творческий
+      - Творческие
+      - Творческих
+
+  - synonym: "Детский"
+    examples: |
+      - детский
+      - детские
+      - детских
+      - Детские
+      - Детских
+      - для детей
+      - детям
+      - ребенку
+
+  - synonym: "Взрослый"
+    examples: |
+      - взрослый
+      - взрослые
+      - взрослых
+      - Взрослые
+      - Взрослых
+      - для взрослых
+      - взрослым
+      - взрослому
+
+  - synonym: "Семейный"
+    examples: |
+      - семейный
+      - семейные
+      - семейных
+      - Семейные
+      - Семейных
+      - для семьи
+      - для семей
+      - семьям
+      - семье
+
+  - synonym: "Индивидуальный"
+    examples: |
+      - индивидуальный
+      - индивидуальные
+      - индивидуальных
+      - Индивидуальные
+      - Индивидуальных
+      - для одного
+      - одному
+
+  - synonym: "Групповой"
+    examples: |
+      - групповой
+      - групповые
+      - групповых
+      - Групповые
+      - Групповых
+      - для группы
+      - для групп
+      - группе
+
+  - synonym: "directions"
+    examples: |
+      - список направлений
+      - направления
+      - направлениям
+
+  - synonym: "workshops"
+    examples: |
+      - список мастер-классов
+      - мастер-классы
+      - мастер-классов
+      
+  - synonym: "categories"
+    examples: |
+      - список категорий
+      - категории
+      - категориям
+
+  - synonym: "types"
+    examples: |
+      - список типов
+      - типы
+      - типам
+
+  - synonym: "перечислить"
+    examples: |
+      - перечислите
+      - предложить
+      - предложите
+
+  - synonym: "можешь"
+    examples: |
+      - можете
+
+  - synonym: "1"
+    examples: |
+      - 1й
+      - 1-й
+      - 1м
+      - 1-м
+      - 1го
+      - 1-го
+      - 1му
+      - 1-му
+      - первый
+      - первом
+      - первому
+      - первого
+
+  - synonym: "2"
+    examples: |
+      - 2й
+      - 2-й
+      - 2м
+      - 2-м
+      - 2го
+      - 2-го
+      - 2му
+      - 2-му
+      - второй
+      - втором
+      - второму
+      - второго
+
+  - synonym: "3"
+    examples: |
+      - 3й
+      - 3-й
+      - 3м
+      - 3-м
+      - 3го
+      - 3-го
+      - 3му
+      - 3-му
+      - третий
+      - третьем
+      - третьему
+      - третьего
+
+  - synonym: "4"
+    examples: |
+      - 4й
+      - 4-й
+      - 4м
+      - 4-м
+      - 4го
+      - 4-го
+      - 4му
+      - 4-му
+      - четвертый
+      - четвёртый
+      - четвертом
+      - четвёртом
+      - четвертому
+      - четвёртому
+      - четвертого
+      - четвёртого
+
+  - synonym: "5"
+    examples: |
+      - 5й
+      - 5-й
+      - 5м
+      - 5-м
+      - 5го
+      - 5-го
+      - 5му
+      - 5-му
+      - пятый
+      - пятом
+      - пятому
+      - пятого
+
+  - synonym: "6"
+    examples: |
+      - 6й
+      - 6-й
+      - 6м
+      - 6-м
+      - 6го
+      - 6-го
+      - 6му
+      - 6-му
+      - шестой
+      - шестом
+      - шестому
+      - шестого
+
+  - synonym: "7"
+    examples: |
+      - 7й
+      - 7-й
+      - 7м
+      - 7-м
+      - 7го
+      - 7-го
+      - 7му
+      - 7-му
+      - седьмой
+      - седьмом
+      - седьмому
+      - седьмого
+
+  - synonym: "8"
+    examples: |
+      - 8й
+      - 8-й
+      - 8м
+      - 8-м
+      - 8го
+      - 8-го
+      - 8му
+      - 8-му
+      - восьмой
+      - восьмом
+      - восьмому
+      - восьмого
+
+  - synonym: "9"
+    examples: |
+      - 9й
+      - 9-й
+      - 9м
+      - 9-м
+      - 9го
+      - 9-го
+      - 9му
+      - 9-му
+      - девятый
+      - девятом
+      - девятому
+      - девятого
+
+  - synonym: "10"
+    examples: |
+      - 10й
+      - 10-й
+      - 10м
+      - 10-м
+      - 10го
+      - 10-го
+      - 10му
+      - 10-му
+      - десятый
+      - десятом
+      - десятому
+      - десятого
+
+  - synonym: "LAST"
+    examples: |
+      - последний
+      - последнего
+      - последнем
+      - последнему
+
+  - lookup: metro
+    examples: |
+      - Новослободская
+      - Китай-город
+      - Динамо
+      - Первомайская
+      - Волжская
+      - Площадь Революции
+      - Баррикадная
+      - Красные ворота
+      - Волоколамская
+      - Партизанская
+      - Зорге
+      - Бескудниково
+      - Чкаловская
+      - Цветной бульвар
+      - Электрозаводская
+      - Фонвизинская
+      - Улица 1905 года
+      - Таганская
+      
+  - synonym: "рядом"
+    examples: |
+      - недалеко
+      - неподалеку
+      - неподалёку

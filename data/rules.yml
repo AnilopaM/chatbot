@@ -1,0 +1,36 @@
+version: "3.1"
+
+rules:
+  - rule: greet
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_help
+      
+  - rule: goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: help
+    steps:
+      - intent: help
+      - action: utter_help
+      
+  - rule: query knowledge base
+    steps:
+      - intent: query_knowledge_base
+      - action: action_query_knowledge_base
+
+  - rule: configure settings and reset
+    condition:
+      - active_loop: null
+    steps:
+      - intent: configure_settings
+      - action: action_reset_objects_in_sample
+      - action: configure_settings_form
+      - active_loop: configure_settings_form
+      - slot_was_set:
+        - objects_in_sample
+      - active_loop: null  
+      - action: utter_configure_settings_ok

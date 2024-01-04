@@ -1,0 +1,129 @@
+version: "3.1"
+
+# Список намерений
+intents:                          
+- greet                           # Приветствие 
+- goodbye                         # Прощание
+- query_knowledge_base            # Запрос к базе знаний
+- help                            # Помощь
+- configure_settings              # Настроить параметры
+- inform                          # Информация  
+
+# Список сущностей 
+entities:                         
+- object_type                     # Тип объекта
+- mention                         # Ссылка на ранее упомянутый объект, например, через местоимение или перечисление
+- attribute                       # атрибут
+- objects_in_sample               # максимальное количество предлагаемых объектов 
+- metro                           # ближайшая станция метро 
+- direction                       # направление мастер-класса
+- category                        # категория мастер-класса
+- m_type                          # тип мастер-класса 
+
+# Список слотов
+slots:                            
+  object_type:                    # Наименование слота: "object_type"
+    type: text                    # Тип слота: "text"
+    influence_conversation: false # Отключаем влияние слота на разговор
+    mappings:                     # Сопоставление слотов   
+    - type: from_entity           # Сопоставление слотов from_entity заполняет слоты на основе извлеченных сущностей
+      entity: object_type         # Сущность "object_type" будет заполнять слот "object_type"
+      
+  mention:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: mention
+      
+  attribute:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: attribute
+
+  objects_in_sample:
+    type: any
+    mappings:
+    - intent:
+      - inform
+      - configure_settings_form
+      type: from_text
+      conditions:
+      - active_loop: configure_settings_form
+        requested_slot: objects_in_sample
+    - type: from_entity
+      entity: objects_in_sample
+
+  metro:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: metro
+      
+  direction:    
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: direction
+      
+  category:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: category
+      
+  m_type:    
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: m_type
+      
+  m_selected:
+    type: list
+    mappings:
+    - type: custom
+      
+# Список действий      
+actions:                          
+- action_query_knowledge_base
+- action_reset_objects_in_sample
+
+# Список ответов
+responses:                        
+  utter_greet:
+  - text: Привет. Я система-собеседник для выбора мастер-классов
+  
+  utter_goodbye:
+  - text: Пока
+  - text: До свидания
+  - text: Желаю удачи!
+
+  utter_help:
+  - text: "Я могу предложить мастер-классы: \n - по направлениям; \n - по категориям; \n - по типам; \n - рядом с какой-то станцией метро. \nМогу записать Вас на выбранный мастер-класс. \nА также Вы можете настроить мои параметры (параметры собеседника)."
+
+  utter_ask_rephrase:
+  - text: Извините, я не уверен, что понимаю. Можете перефразировать?
+  - text: Можете, пожалуйста, перефразировать? Я этого не понял.
+  
+  utter_ask_configure_settings_form_objects_in_sample:
+  - text: "Введите максимальное количество предлагаемых объектов (1..10):"
+
+  utter_configure_settings_ok:
+  - text: "Настройки завершены \nПродолжим выбирать мастер-класс"
+  
+forms:
+  configure_settings_form:
+    ignored_intents: []
+    required_slots:
+    - objects_in_sample
+  
+# Параметры сессии  
+session_config:                   
+  session_expiration_time: 0
+  carry_over_slots_to_new_session: true
