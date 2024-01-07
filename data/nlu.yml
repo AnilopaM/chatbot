@@ -60,7 +60,7 @@ nlu:
       - [Индивидуальные]{"entity": "m_type", "value": "Индивидуальный"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
       - список [групповых]{"entity": "m_type", "value": "Групповой"} [мастер-классов]{"entity": "object_type", "value": "workshops"}
       - предложить [мастер-классы]{"entity": "object_type", "value": "workshops"} [для одного]{"entity": "m_type", "value": "Индивидуальный"}
-      - доступные [для гпуппы]{"entity": "m_type", "value": "Групповой"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
+      - доступные [для группы]{"entity": "m_type", "value": "Групповой"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
       - сколько [мест]{"entity": "attribute", "value": "places"} в [первом]{"entity": "mention", "value": "1"}?
       - какая [длительность]{"entity": "attribute", "value": "duration"} [второго]{"entity": "mention", "value": "2"}?
       - сколько [стоит]{"entity": "attribute", "value": "price"} [третий]{"entity": "mention", "value": "3"}?
@@ -75,21 +75,21 @@ nlu:
       - как [называется]{"entity": "attribute", "value": "name"} [четвертый]{"entity": "mention", "value": "4"}?
       - [направления]{"entity": "object_type", "value": "directions"}
       - доступные [направления]{"entity": "object_type", "value": "directions"}
-      - по каким [направлениям]{"entity": "object_type", "value": "directions"} можно выбрирать
+      - по каким [направлениям]{"entity": "object_type", "value": "directions"} можно выбирать
       - перечислить [направления]{"entity": "object_type", "value": "directions"}
       - перечислите [направления]{"entity": "object_type", "value": "directions"} для выбора
       - предложите [направления]{"entity": "object_type", "value": "directions"} для выбора
       - предложить [направления]{"entity": "object_type", "value": "directions"}
       - [категории]{"entity": "object_type", "value": "categories"}
       - доступные [категории]{"entity": "object_type", "value": "categories"}
-      - по каким [категориям]{"entity": "object_type", "value": "categories"} можно выбрирать
+      - по каким [категориям]{"entity": "object_type", "value": "categories"} можно выбирать
       - перечислить [категории]{"entity": "object_type", "value": "categories"}
       - перечислите [категории]{"entity": "object_type", "value": "categories"} для выбора
       - предложите [категории]{"entity": "object_type", "value": "categories"} для выбора
       - предложить [категории]{"entity": "object_type", "value": "categories"}
       - [типы]{"entity": "object_type", "value": "types"}
       - доступные [типы]{"entity": "object_type", "value": "types"}
-      - по каким [типам]{"entity": "object_type", "value": "types"} можно выбрирать
+      - по каким [типам]{"entity": "object_type", "value": "types"} можно выбирать
       - перечислить [типы]{"entity": "object_type", "value": "types"}
       - перечислите [типы]{"entity": "object_type", "value": "types"} для выбора
       - предложите [типы]{"entity": "object_type", "value": "types"} для выбора
@@ -119,7 +119,7 @@ nlu:
       - [включить]{"entity": "attribute", "value": "_add_"} [девятый]{"entity": "mention", "value": "9"}
       - [выбрать]{"entity": "attribute", "value": "_add_"} [последний]{"entity": "mention", "value": "LAST"}
       - [запишите]{"entity": "attribute", "value": "_add_"} на [него]{"entity": "mention"}
-      - [вывираю]{"entity": "attribute", "value": "_add_"} [этот]{"entity": "mention"}
+      - [выбираю]{"entity": "attribute", "value": "_add_"} [этот]{"entity": "mention"}
       - [выбранные]{"entity": "attribute", "value": "_list_"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
       - перечислить [выбранные]{"entity": "attribute", "value": "_list_"} [мастер-классы]{"entity": "object_type", "value": "workshops"}
       - какие [мастер-классы]{"entity": "object_type", "value": "workshops"} я [выбрал]{"entity": "attribute", "value": "_list_"} 

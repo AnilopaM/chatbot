@@ -14,7 +14,6 @@ entities:
 - object_type                     # Тип объекта
 - mention                         # Ссылка на ранее упомянутый объект, например, через местоимение или перечисление
 - attribute                       # атрибут
-- objects_in_sample               # максимальное количество предлагаемых объектов 
 - metro                           # ближайшая станция метро 
 - direction                       # направление мастер-класса
 - category                        # категория мастер-класса
@@ -53,8 +52,6 @@ slots:
       conditions:
       - active_loop: configure_settings_form
         requested_slot: objects_in_sample
-    - type: from_entity
-      entity: objects_in_sample
 
   metro:
     type: text
